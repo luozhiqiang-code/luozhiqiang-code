@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>my jquery test</title>
+        <style>
+            ul li{
+                border: 2px solid pink;
+                background-color: cadetblue;
+                /* display: none; */
+                list-style: none;
+                width: 100px;
+                /* height: 20px; */
+            }
+             ul>li>div{
+                background-color: white;
+                height: 100px;
+                display: none;
+                /* width: 100px; */
+                /* height: 100px; */
+            }
+
+            body{
+                /* background-color: black; */
+            }
+        </style>
+    </head>
+    <body>
+        <!-- <button id="open">open</button>
+        <button>close</button>
+        <img src="pic.jpg" alt="a cool girl with a sword on her hand."> -->
+            <ul>
+                <li>1
+                    <div>first</div>
+                </li>
+                <li>2
+                    <div>second</div>
+                </li>
+                <li>3
+                    <div>third</div>
+                </li>
+            </ul>
+
+       <!-- <ul>
+           <a href="#">second</a>
+           <li>1</li>
+           <li>2</li>
+           <li>3</li>
+       </ul>
+       <ul>
+           <a href="#">third</a>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul> -->
+    </body>
+</html>
+
+<script src="jquery-1.12.4.js"></script>
+<script>
+// $(function(){
+//     // var btns = document.querySelectorAll('button');
+//  var $btns = $('button');
+   
+//  $($btns[0]).click(function(){
+//  $('body')[0].style.backgroundColor = 'white';
+//  });
+
+// $($btns[1]).click(function(){
+//     $('body')[0].style.backgroundColor = 'black';
+// });
+// });
+
+// $(function(){
+//    $('ul').mouseover(function(){
+//        $(this).children('li').hide();
+//    })
+// });
+
+// $(function(){
+//     $('ul').mouseout(function(){
+//         $(this).children('li').show();
+//     })
+// })
+
+// $('div').find('li').mouseenter(function(){
+//     $(this).css('opacity',1).siblings('li').css('opacity',0.4);
+// });
+
+// $('div').mouseleave(function(){
+//    $(this).find('li').css('opacity',1);
+// })
+
+$('ul>li').mouseenter(function(){
+    $(this).find('div').show().parent().siblings('li').find('div').hide();
+});
+
+$('ul').mouseleave(function(){
+    $('ul').find('div').hide();
+
+    
+})
+
+</script>

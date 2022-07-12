@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    <head>
+       <meta charset="utf-8">
+       <title>ternary operator</title> 
+    </head>
+
+    <body>
+        <label for="theme">Select Theme</label>
+        <select id="theme">
+             <option value="white">white</option>
+             <option value="black">black</option>
+             <option value="red">red</option>
+              <option value="blue">blue</option>
+              <option value="green">green</option>
+        </select>
+        <h1>This is my website</h1>
+
+        <script>
+            const html = document.querySelector('html');
+            const select = document.querySelector('select');
+
+            select.onchange = function (){
+                // select.value === "black" ? update('black','white') : update('white','black'); 
+                   switch(select.value){
+                       case 'white': 
+                         update('white','black')
+                          break;
+                       case 'black': 
+                         update('black','white')
+                          break;
+                       case 'red':
+                         update('red','yellow')
+                          break;
+                       case 'blue':  
+                         update('blue','green');
+                           break;
+                       case 'green':
+                         update('green','blue')
+                           break;
+                   }
+            }
+
+            function update(bgColor,textColor){
+                html.style.backgroundColor = bgColor;
+                html.style.color = textColor;
+
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>canvas Example</title>
+        <!-- <link rel="stylesheet" href=""> -->
+        <style>
+            body{
+                margin: 0;
+                overflow: hidden;
+            }
+        </style>
+
+    </head>
+
+    <body>
+         
+  
+        <canvas width="320" height="240" class="myCanvas">
+            <p>Sorry, your browser don't support canvas!</p>
+        </canvas>
+
+        <script>
+            let canvas = document.querySelector('.myCanvas');
+            let width = canvas.width = window.innerWidth;
+            let height = canvas.height = window.innerHeight;
+            let ctx = canvas.getContext('2d');
+
+
+            ctx.fillStyle = 'black';
+            ctx.fillRect(0,0,width,height);
+
+            // ctx.fillStyle = 'rgb(255,0,0)';
+            // ctx.fillRect(50,50,100,150);
+
+            // ctx.fillStyle = 'rgb(0,255,0)';
+            // ctx.fillRect(75,75,100,100);
+
+            // ctx.fillStyle = 'rgb(255,0,255,0.75)';
+            // ctx.fillRect(25,100,175,50);
+
+            // ctx.strokeStyle = 'rgb(255,255,255)';
+            // ctx.lineWidth = 5;//默认边框线宽1px，设置线宽应该在画图之前
+            // ctx.strokeRect(25,25,175,200);
+
+            // ctx.fillStyle = 'rgb(255,0,0)';
+            // ctx.beginPath();
+            // ctx.moveTo(50,50);
+            // ctx.fill();
+            
+
+            // ctx.fillStyle = 'rgb(255,0,0)';
+            // ctx.beginPath();
+            // ctx.moveTo(50,50);
+
+            // ctx.lineTo(150,50);
+            // let triHeight = 50 * Math.tan(degToRad(60));
+            // ctx.lineTo(100, 50+triHeight);
+            // ctx.lineTo(50,50);
+            // ctx.fill();
+
+            // ctx.fillStyle = 'rgb(0,0,255)';
+            // ctx.beginPath();
+            // ctx.arc(150,106,50,degToRad(0),degToRad(360),false);
+            // ctx.fill();
+
+            // ctx.fillStyle = 'yellow';
+            // ctx.beginPath();
+            // ctx.arc(200,106,50,degToRad(-45),degToRad(45),true);
+            // ctx.lineTo(200,106);
+            // ctx.fill();
+
+            // ctx.strokeStyle = 'white';
+            // ctx.lineWidth = 1;
+            // ctx.font = '36px arial';
+            // ctx.strokeText('Canvas text',50,50)
+
+            // ctx.fillStyle = 'red';
+            // ctx.font = '48px georgia';
+            // ctx.fillText('Canvas Text',50,150);
+
+            // let image = new Image();
+            // image.src = 'firefox.png';
+
+            // image.onload = function(){
+            //     // ctx.drawImage(image,50,50);
+            //     ctx.drawImage(image,20,20,185,175,50,50,185,175);
+            // }
+
+            ctx.translate(width/2,height/2);
+            function random(min,max){
+                return Math.floor(Math.random()*(max-min+1)+min);
+            }
+
+            let length = 250;
+            let moveOffset = 20;
+
+            // setInterval(animation,10);
+            function animation(){
+                ctx.fillStyle = 'black';
+            ctx.fillRect(0,0,width,height);
+                // for(let i = 0; i < length; i++){
+                // ctx.fillStyle = 'rgba(' + (255-length) + ',0,' + (255-length) + ',0.9)';
+                ctx.fillStyle = 'rgba(' + random(0,250) + ',' +random(0,250) + ',' + random(0,250) + ',0.9)';
+                ctx.beginPath();
+                ctx.moveTo(moveOffset,moveOffset);
+                ctx.lineTo(moveOffset + length, moveOffset);
+                let triHeight = length/2 * Math.tan(degToRad(60));
+                ctx.lineTo(moveOffset+(length/2),moveOffset+triHeight);
+                ctx.lineTo(moveOffset,moveOffset);
+                ctx.fill();
+
+                length--;
+                moveOffset += 0.1;
+                ctx.rotate(degToRad(5));
+            // }
+               requestAnimationFrame(animation);
+            }
+
+            animation();
+
+
+
+
+
+
+
+
+
+
+            function degToRad(degrees){
+                return degrees*Math.PI/180;
+            };
+            
+        </script>
+    </body>
+</html>

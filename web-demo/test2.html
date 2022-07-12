@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>My test page</title>
+    <style>
+        html{
+            background-color: white;
+            height: 100%;
+        }
+
+        body{
+            height: inherit;
+            background-color: white;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        button{
+            display: inline-block;
+        }
+        div{
+            display: block;
+            font-size: 10rem;
+            
+        }
+    </style>
+  </head>
+  <body>
+      <button class="start">Start</button>
+      <button class="stop">Stop</button>
+      <br>
+    <div> ↻ </div>
+    <script>
+        const spinner = document.querySelector('div');
+        const btnStart = document.querySelector('.start');
+        const btnStop = document.querySelector('.stop');
+        let rotateCount = 0;
+        let rAF ;
+        let startTime = null;
+
+        function draw(timeStamp){
+            if(!startTime){
+                startTime = timeStamp;
+            }
+
+            rotateCount = (timeStamp-startTime)/3;
+
+            if(rotateCount>359){
+                rotateCount %= 360;
+            }
+
+            spinner.style.transform = 'rotate('+rotateCount+'deg)';
+
+            rAF = requestAnimationFrame(draw);
+        }
+        
+        btnStart.addEventListener('click',()=>{
+            draw();
+            btnStart.disabled = true;
+        });
+
+        btnStop.addEventListener('click',()=>{
+            cancelAnimationFrame(rAF);
+            btnStart.disabled = false;
+        });
+        
+    </script>
+  </body>
+</html>

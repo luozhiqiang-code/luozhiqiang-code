@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    <head>
+        <meta charset="utf-8">
+        <title>Simple contact search example</title>
+    </head>
+
+    <body>
+        <label for="search">Search by contact name:</label>
+        <input type="text" id="search">
+        <button>Search</button>
+        <p></p>
+
+        <script>
+            const contacts = ['Chris:11111','Sarah:22222','Bill:33333','Mary:44444','Tom:55555'];
+            const para = document.querySelector('p');
+            const input = document.querySelector('input');
+            const btn = document.querySelector('button');
+
+            btn.addEventListener('click', function(){
+                const searchName = input.value.toLowerCase();
+
+                input.value = '';
+                input.focus();
+                for(let i=0;i<contacts.length;i++){
+                    let splitContacts = contacts[i].split(':');
+                    if(splitContacts[0].toLowerCase() === searchName){
+                        para.textContent = splitContacts[0]+'\'s number is'+splitContacts[1]+'.';
+                        break;
+                    }else if(i === contacts.length-1){
+                         para.textContent = 'Contact ont found';
+                        //  console.log(para.textContent);
+                    }
+                }
+ 
+
+            }
+            )
+        </script>
+    </body>
+</html>

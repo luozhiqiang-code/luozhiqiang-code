@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>Simple setInterval clock</title>
+    <style>
+      div {
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-size: 70px;
+        display: inline-block;
+        border: solid;
+        border-radius: 10px;
+      }
+      button{
+        background-color: rgb(187, 179, 181);
+        padding: 5px;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-size: 30px;
+        border-radius: 5px;
+        margin: 0px;
+      }
+      .clock{
+        border:0px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <button id='start'>Start</button>
+      <button id='stop'>Stop</button>
+      <button id='reset'>Reset</button>
+      <br>
+      <div class="clock"></div>
+    </div>
+
+    <script>
+        btnStart = document.getElementById('start');
+        btnStop = document.getElementById('stop');
+        btnReset = document.getElementById('reset');
+        let secondCount = 0;
+
+      function displayCount() {
+        let hours = Math.floor((secondCount/3600));
+        let minites = Math.floor((secondCount%3600)/60);
+        let seconds = Math.floor((secondCount%60));
+
+        let displayHours = (hours<10) ? '0'+hours: hours;
+        let displayMinites = (minites<10)? '0'+minites: minites;
+        let displaySeconds = (seconds<10)? '0'+seconds: seconds;
+
+        document.querySelector('.clock').textContent = displayHours + ':' + displayMinites +':' + displaySeconds;
+        secondCount ++;
+      }
+      
+      btnStart.addEventListener('click', function(){
+        stopwatch = setInterval(displayCount, 1000);
+        btnStart.disabled = true;
+      });
+
+      btnStop.addEventListener('click',function(){
+       clearInterval(stopwatch);
+       btnStart.disabled = false;
+      })
+
+      btnReset.addEventListener('click',function(){
+        clearInterval(stopwatch);
+        btnStart.disabled = false;
+        secondCount=0;
+        displayCount();
+      })
+
+
+      
+    </script>
+  </body>
+</html>
